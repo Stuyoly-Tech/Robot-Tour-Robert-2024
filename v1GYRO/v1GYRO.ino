@@ -505,6 +505,9 @@ boolean loadPathFromSD(fs::FS &fs) {
         case '4':
           pY = 1750;
           break;
+         case '5':
+          pY = 2250;
+          break;
         default:
           Serial.println("bad_path!");
           return false;
