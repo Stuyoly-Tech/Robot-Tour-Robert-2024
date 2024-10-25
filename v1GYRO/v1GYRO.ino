@@ -474,7 +474,7 @@ boolean loadPathFromSD(fs::FS &fs) {
     buff[1] = file.read();
     //coords
     double pX, pY;
-    if (buff[0] != 'E') {
+    if (buff[0] != 'N') {
       switch (buff[0]) {
         case 'A':
           pX = 250;
@@ -530,6 +530,9 @@ boolean loadPathFromSD(fs::FS &fs) {
           break;
         case 'D':
           pX = 1750;
+          break;
+        case 'E':
+          pX = 2250;
           break;
         default:
           Serial.println("bad_entry!");
