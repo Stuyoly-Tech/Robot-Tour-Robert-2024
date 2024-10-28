@@ -429,6 +429,9 @@ boolean loadPathFromSD(fs::FS &fs) {
         case 'D':
           pX = 1750;
           break;
+        case 'E':
+          pX = 2250;
+          break
         default:
           Serial.println("bad_gate!");
           return false;
@@ -445,6 +448,9 @@ boolean loadPathFromSD(fs::FS &fs) {
           break;
         case '4':
           pY = 1750;
+          break;
+        case '5':
+          pY = 2250;
           break;
         default:
           Serial.println("bad_gate!");
