@@ -431,7 +431,7 @@ boolean loadPathFromSD(fs::FS &fs) {
           break;
         case 'E':
           pX = 2250;
-          break
+          break;
         default:
           Serial.println("bad_gate!");
           return false;

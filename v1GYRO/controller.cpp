@@ -61,7 +61,7 @@ void controller::update() {
   updateTheta();
   double deltaTheta = targetTheta - theta;
   //Serial.println(deltaTheta);
-  //Serial.println(theta*180/PI);
+  Serial.println(theta*180/PI);
   switch (STATE) {
     case 0:
       break;
