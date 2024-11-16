@@ -6,7 +6,6 @@
 #include <Arduino.h>
 #include <AccelStepper.h>
 #include <BMI160Gen.h>
-#include <Filters.h>
 
 class controller {
   private:
@@ -36,8 +35,7 @@ class controller {
     uint32_t turnInterval;
 
     double highPassFreq;
-    FilterOnePole *highPass;
-
+    
     //0 is idle
     //1 is moving
     int STATE;

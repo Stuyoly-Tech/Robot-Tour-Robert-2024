@@ -34,7 +34,7 @@
 //BMI160 IMU
 #define IMU_GND 4
 #define IMU_ADDRESS 0x68
-#define IMU_UPDATE_US 22@.00*pow(10, 3)
+#define IMU_UPDATE_US 0.20*pow(10, 3)
 
 //Robot physical dimensions
 //in mm

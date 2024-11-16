@@ -4,7 +4,6 @@
 #include <AccelStepper.h>
 #include "controller.h"
 #include <BMI160Gen.h>
-#include <Filters.h>
 
 #define RIGHT_OFF 1.00
 
@@ -30,7 +29,6 @@ controller::controller
   engageSteppers = iEngageSteppers;
   engageSteppersHandle = iEngageSteppersHandle;
   highPassFreq = iHighPassFreq;
-  highPass = new FilterOnePole(HIGHPASS, highPassFreq);
 }
 
 void controller::init(double iTheta) {
@@ -128,8 +126,6 @@ void controller::updateTheta() {
     if (abs(angVel) > highPassFreq) {
       theta += dtheta;
     }
-    //highPass->input(theta);
-    //theta = highPass->output();
     while (theta > PI) {
       theta -= TWO_PI;
     }
