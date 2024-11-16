@@ -34,7 +34,7 @@
 //BMI160 IMU
 #define IMU_GND 4
 #define IMU_ADDRESS 0x68
-#define IMU_UPDATE_US 0.20*pow(10, 3)
+#define IMU_UPDATE_US 0.10*pow(10, 3)
 
 //Robot physical dimensions
 //in mm
@@ -50,7 +50,7 @@
 #define MAX_ANG_ACCEL 300
 #define MAX_ANG_VEL 325
 
-#define HIGH_PASS_FREQ 0*pow(10, -3)//11.2051109*pow(10, -3) //Best value found so far
+#define HIGH_PASS_FREQ 13*pow(10, -3)//11.2051109*pow(10, -3) //Best value found so far
 //2.5*pow(10, -6)
 //Not used
 #define TURN_US 2500*pow(10, 3)

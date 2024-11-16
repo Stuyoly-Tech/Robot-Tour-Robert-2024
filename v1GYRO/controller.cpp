@@ -59,7 +59,7 @@ void controller::update() {
   updateTheta();
   double deltaTheta = targetTheta - theta;
   //Serial.println(deltaTheta);
-  Serial.println(theta*180/PI);
+  //Serial.println(theta*180/PI);
   switch (STATE) {
     case 0:
       break;
@@ -121,6 +121,8 @@ void controller::updateTheta() {
   //micros() - oldIMUus > intervalIMUus
   if (micros() - oldIMUus > intervalIMUus) {
     double angVel = ((BMI160.getRotationZ() * 1000.0) / 32768.0) * PI/180;
+    //Serial.print("angvel: ");
+    //Serial.println(angVel, 10);
     double interval = micros() - oldIMUus;
     double dtheta = angVel*(interval/pow(10, 6));
     if (abs(angVel) > highPassFreq) {
