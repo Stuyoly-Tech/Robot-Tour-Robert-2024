@@ -1,3 +1,7 @@
+#include <dummy.h>
+
+#include <dummy.h>
+
 #include <mutex>
 #include <esp_task_wdt.h>
 
@@ -307,7 +311,7 @@ void loop() {
 }
 
 void engageSteppers(void * parameter) {
-  esp_task_wdt_init(300, false);
+  //esp_task_wdt_init(300, false);
   steppersEngaged_mtx.lock();
   while (stepperL.run() && stepperR.run());
   stepperL.setCurrentPosition(stepperL.targetPosition());
@@ -473,76 +477,55 @@ boolean loadPathFromSD(fs::FS &fs) {
       break;
     }
   }
-
+  bool firstDone = false;
   //Read in paths
   while (file.available()) {
     buff[0] = file.read();
     buff[1] = file.read();
     //coords
     double pX, pY;
-    if (buff[0] != 'N') {
-      switch (buff[0]) {
-        case 'A':
-          pX = 250;
+    switch (buff[0]) {
+      case 'A':
+        pX = 250;
+        break;
+      case 'B':
+        pX = 750;
+        break;
+      case 'C':
+        pX = 1250;
+        break;
+      case 'D':
+        pX = 1750;
+        break;
+      case 'E':
+        pX = 2250;
           break;
-        case 'B':
-          pX = 750;
-          break;
-        case 'C':
-          pX = 1250;
-          break;
-        case 'D':
-          pX = 1750;
-          break;
-        case 'E':
-          pX = 2250;
-          break;
-        default:
-          Serial.println("bad_path!");
-          return false;
-      }
-      switch (buff[1]) {
-        case '1':
-          pY = 250;
-          break;
-        case '2':
-          pY = 750;
-          break;
-        case '3':
-          pY = 1250;
-          break;
-        case '4':
-          pY = 1750;
-          break;
-         case '5':
-          pY = 2250;
-          break;
-        default:
-          Serial.println("bad_path!");
-          return false;
-      }
+      default:
+        Serial.println("bad_path!");
+        return false;
     }
-    else {
-      pY = -DIST_TO_DOWEL;
-      switch (buff[1]) {
-        case 'A':
-          pX = 250;
-          break;
-        case 'B':
-          pX = 750;
-          break;
-        case 'C':
-          pX = 1250;
-          break;
-        case 'D':
-          pX = 1750;
-          break;
-        case 'E':
-          pX = 2250;
-          break;
-        default:
-          Serial.println("bad_entry!");
-          return false;
+    switch (buff[1]) {
+      case '1':
+        pY = 250;
+        break;
+      case '2':
+        pY = 750;
+        break;
+      case '3':
+        pY = 1250;
+      break;
+      case '4':
+        pY = 1750;
+        break;
+        case '5':
+        pY = 2250;
+        break;
+      default:
+        Serial.println("bad_path!");
+        return false;
+      if(!firstDone){
+        pY -= DIST_TO_DOWEL;
+        firstDone = true;
       }
     }
     PATH[PATH_SIZE] = Vector2d(pX, pY);
