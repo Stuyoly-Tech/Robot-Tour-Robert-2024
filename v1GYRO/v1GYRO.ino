@@ -242,6 +242,7 @@ void loop() {
         STATE = READY;
         digitalWrite(STEP_ENABLE, HIGH);
         oled.clear();
+        oled.println("READY");
         oled.print("target_t: "); oled.println(TARGET_TIME);
         oled.print("x_off: "); oled.println(FINAL_OFFSET_X);
         oled.print("y_off: "); oled.print(FINAL_OFFSET_Y);
