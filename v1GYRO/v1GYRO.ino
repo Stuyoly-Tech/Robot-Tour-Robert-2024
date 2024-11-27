@@ -415,7 +415,7 @@ boolean loadPathFromSD(fs::FS &fs) {
   }
 
   //Read in Gates
-  for (byte i=0; i<GATE_SIZE; i++) {
+  for (byte i=0; i < GATE_SIZE; i++) {
     buff[0] = file.read();
     buff[1] = file.read();
     //coords
@@ -523,10 +523,11 @@ boolean loadPathFromSD(fs::FS &fs) {
       default:
         Serial.println("bad_path!");
         return false;
-      if(!firstDone){
-        pY -= DIST_TO_DOWEL;
-        firstDone = true;
-      }
+    }
+    if(!firstDone){
+      PATH[PATH_SIZE] = Vector2d(pX, -DIST_TO_DOWEL);
+      PATH_SIZE++;
+      firstDone = true;
     }
     PATH[PATH_SIZE] = Vector2d(pX, pY);
     PATH_SIZE++;
