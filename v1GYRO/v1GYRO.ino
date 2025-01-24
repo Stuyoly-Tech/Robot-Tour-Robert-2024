@@ -1,7 +1,3 @@
-#include <dummy.h>
-
-#include <dummy.h>
-
 #include <mutex>
 #include <esp_task_wdt.h>
 
@@ -100,7 +96,7 @@ void setup() {
   pinMode(FAULT_R, INPUT);
 
   pinMode(STEP_ENABLE, OUTPUT);
-  digitalWrite(STEP_ENABLE, LOW);
+  digitalWrite(STEP_ENABLE, HIGH);
 
   pinMode(LED_0, OUTPUT);
   pinMode(LED_1, OUTPUT);
@@ -166,7 +162,7 @@ void setup() {
     oled.clear();
     oled.set1X();
     oled.println("TESTING TURN");
-    digitalWrite(STEP_ENABLE, HIGH);
+    digitalWrite(STEP_ENABLE, LOW);
     for (int i=0; i<50; i++) {
       robotController.setTheta(PI/2);
       while (robotController.getState() != 0) {
@@ -199,7 +195,7 @@ void setup() {
     oled.clear();
     oled.set1X();
     oled.println("TESTING FORW");
-    digitalWrite(STEP_ENABLE, HIGH);
+    digitalWrite(STEP_ENABLE, LOW);
     robotController.setMaxVx(MAX_VX);
     for (int i=0; i<50; i++) {
       robotController.moveX(300);
@@ -226,7 +222,7 @@ void loop() {
         Robot.init(PATH_MODE);
         robotSimplePursuit.init(PATH, PATH_SIZE, GATES, GATE_SIZE, TARGET_TIME, FINAL_OFFSET_Y, FINAL_OFFSET_X);
         STATE = READY;
-        digitalWrite(STEP_ENABLE, HIGH);
+        digitalWrite(STEP_ENABLE, LOW);
         oled.clear();
         oled.set1X();
         oled.println("READY");
@@ -240,7 +236,7 @@ void loop() {
       if (BTN_STATE(1)) {
         Robot.init(PATH_MODE);
         STATE = READY;
-        digitalWrite(STEP_ENABLE, HIGH);
+        digitalWrite(STEP_ENABLE, LOW);
         oled.clear();
         oled.println("READY");
         oled.print("target_t: "); oled.println(TARGET_TIME);
@@ -250,7 +246,7 @@ void loop() {
       if (BTN_STATE(0)) {
         Robot.startPath();
         STATE = RUNNING;
-        digitalWrite(STEP_ENABLE, HIGH);
+        digitalWrite(STEP_ENABLE, LOW);
         oled.clear();
         oled.set2X();
         oled.println("RUNNING");
@@ -262,7 +258,7 @@ void loop() {
       Robot.update();
       if (BTN_STATE(1)) {
         STATE = STOPPED;
-        digitalWrite(STEP_ENABLE, LOW);
+        digitalWrite(STEP_ENABLE, HIGH);
         oled.clear();
         oled.set2X();
         oled.println("STOPPED");
@@ -282,7 +278,7 @@ void loop() {
     case END_RUN:
       if (BTN_STATE(0)) {
         STATE = IDLE;
-        digitalWrite(STEP_ENABLE, LOW);
+        digitalWrite(STEP_ENABLE, HIGH);
         oled.clear();
         oled.set2X();
         oled.println("IDLE");

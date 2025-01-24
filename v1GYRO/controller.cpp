@@ -96,6 +96,7 @@ void controller::update() {
         stepperR->move(mmToSteps(0.5*trackWidth*deltaTheta));
         steppersEngaged_mtx->unlock();
         xTaskCreatePinnedToCore(engageSteppers, "engageSteppers Task", 10000, NULL, 1, engageSteppersHandle, 1);
+        delay(20);    
         STATE = 3;
       }
       break;

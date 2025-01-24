@@ -15,7 +15,7 @@
 
 #define STEP_ENABLE 16
 
-#define STEPS_PER_REV 12800
+#define STEPS_PER_REV 6400
 
 //Oled
 #define OLED_ADD 0x3C
@@ -44,7 +44,7 @@
 
 //Controller tuning values
 
-#define MAX_ACCEL 600
+#define MAX_ACCEL 700
 #define MAX_VX 8000
 
 #define MAX_ANG_ACCEL 300
